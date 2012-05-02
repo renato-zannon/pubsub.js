@@ -22,19 +22,22 @@ var server = new Server("127.0.0.1", SERVER_PORT);
 
 server.on("message", function(message, client) {
   if(message.isListRequest()) {
+    console.log("Pedido de listagem: " + client.toString());
     client.send(channels.toString());
     return;
   }
 
   if(message.isInvalid()) {
-    console.log("Invalid message: '" + message.raw +"'");
+    console.log("Mensagem inválida: '" + message.raw +"'");
     return;
   }
 
   var channel = channels.byName(message.channelName);
   if(message.isPublication()) {
     channel.publish(message);
+    console.log("Publicação em '"+channel.name+"': "+message.content);
   } else if(message.isSubscription()) {
+    console.log("Novo inscrito em '"+channel.name+"': "+client.toString());
     channel.addSubscriber(client);
   }
 });
