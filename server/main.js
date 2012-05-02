@@ -1,31 +1,9 @@
 var Server  = require("./udp_server").Server;
-var _       = require("underscore");
-var Channel = require("./channel").Channel;
+var channels = require("./channels");
 
-var server = new Server();
+var SERVER_PORT = 12345;
 
-var channels = (function() {
-  var store = {};
-
-  var nameToKey = function(name) {
-    return "_channel_" + name;
-  };
-
-  var byName = function(name) {
-    var key = nameToKey(name);
-    if(store.hasOwnProperty(key)) {
-      return store[key];
-    } else {
-      var newChannel = new Channel(name);
-      store[key] = newChannel;
-      return newChannel;
-    }
-  };
-
-  return {
-    byName: byName
-  };
-})();
+var server = new Server("127.0.0.1", SERVER_PORT);
 
 server.on("message", function(message, client) {
   var channel = channels.byName(message.channelName);
@@ -36,16 +14,4 @@ server.on("message", function(message, client) {
     channel.addSubscriber(client);
     console.log("Subscription on "+channel.name);
   }
-
-  // var msg = client.toString() + " connected!";
-  // var notify = function(otherClient) {
-  //   otherClient.send(msg);
-  // };
-
-  // _(server.clients).without(client).forEach(notify);
 });
-
-// server.on("newClient", function(client) {
-//   var msg = "Welcome "+client.toString();
-//   console.log(msg);
-// });
