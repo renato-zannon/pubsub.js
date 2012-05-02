@@ -13,5 +13,7 @@ server.on("message", function(message, client) {
   } else if(message.isSubscription()) {
     channel.addSubscriber(client);
     console.log("Subscription on "+channel.name);
+  } else {
+    console.log("Invalid message: '" + message.raw +"'");
   }
 });
