@@ -6,7 +6,9 @@ prototype.publish = function(message) {
   var formattedMessage = this.name + ": " + message.content;
 
   this.subscribers.forEach(function(subscriber) {
-    subscriber.send(formattedMessage)
+    if(subscriber !== message.publisher) {
+      subscriber.send(formattedMessage);
+    }
   });
 
   return this;
