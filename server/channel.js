@@ -1,28 +1,12 @@
 var EventEmitter = require("events").EventEmitter;
-var _ = require("underscore");
-
-var formatMessage = function(spec) {
-  var messsageTemplate = "<%= publisher %>@<%= channel %>: <%= message %>";
-  var compiledTemplate = _.template(messsageTemplate);
-
-  formatMessage = function(spec) {
-    return compiledTemplate.call(null, spec);
-  };
-
-  return formatMessage(spec);
-};
 
 var prototype = new EventEmitter();
 
 prototype.publish = function(message) {
-  var formattedMessage = formatMessage({
-    channel:   this.name,
-    publisher: message.publisher,
-    message:   message.text
-  });
+  var formattedMessage = this.name + ": " + message.content;
 
   this.subscribers.forEach(function(subscriber) {
-    subscriber.send(formattedMessage);
+    subscriber.send(formattedMessage)
   });
 
   return this;
@@ -30,6 +14,10 @@ prototype.publish = function(message) {
 
 prototype.addSubscriber = function(subscriber) {
   this.subscribers.push(subscriber);
+};
+
+prototype.hasSubscriber = function(subscriber) {
+  return this.subscribers.indexOf(subscriber) > 0;
 };
 
 var Channel = function(name) {

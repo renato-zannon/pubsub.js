@@ -3,8 +3,6 @@ var util  = require('util');
 var Buffer = require('buffer').Buffer;
 var EventEmitter = require("events").EventEmitter;
 
-var _ = require("underscore");
-
 function Client(address, port) {
   this._address = address;
   this._port    = port;
