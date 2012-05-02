@@ -17,4 +17,15 @@ var byName = function(name) {
   }
 };
 
-exports.byName = byName;
+var toString = function() {
+  var result = "";
+
+  Object.keys(store).forEach(function(key) {
+    result += store[key].name + "\n";
+  });
+
+  return result;
+};
+
+exports.byName   = byName;
+exports.toString = toString;
