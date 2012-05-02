@@ -3,7 +3,7 @@ var Channel = function(name) {
   this.subscribers = [];
 };
 
-var prototype = {
+Channel.prototype = {
   publish: function(message) {
     var formattedMessage = this.name + ": " + message.content;
 
