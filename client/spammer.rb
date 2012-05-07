@@ -14,6 +14,6 @@ ENDPUB
   MSG
 
 loop do
-  sleep(0.1)
+  sleep(0.05)
   socket.send(message, 0, "127.0.0.1", 12345)
 end

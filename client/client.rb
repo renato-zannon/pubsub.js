@@ -13,12 +13,12 @@ Thread.new do
   loop do
     message, * = socket.recvfrom(1024)
     puts "\n#{message}"
-    print "#{channel_name} >"
+    print "#{channel_name}> "
   end
 end
 
 loop do
-  print "#{channel_name} >"
+  print "#{channel_name}> "
   content = gets.chomp
 
   if content == "LIST"
