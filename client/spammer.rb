@@ -1,23 +1,17 @@
 # encoding: utf-8
 require "socket"
-
-socket = UDPSocket.new
-socket.bind("127.0.0.1", 0)
+require_relative "client"
 
 channel_name = ARGV.shift
-content = ARGV.shift
+spam_message = ARGV.shift
 
-unless channel_name && content
+unless channel_name && spam_message
   abort "Uso: #{$PROGRAM_NAME} nome_do_canal mensagem"
 end
 
-  message = <<-MSG
-PUB #{channel_name}
-#{content}
-ENDPUB
-  MSG
+client = Client.new(channel_name)
 
 loop do
   sleep(0.05)
-  socket.send(message, 0, "127.0.0.1", 12345)
+  client.publish(spam_message)
 end

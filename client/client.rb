@@ -1,38 +1,48 @@
 # encoding: utf-8
 require "socket"
 
-socket = UDPSocket.new
-socket.bind("127.0.0.1", 0)
+class Client
+  HOST = "127.0.0.1".freeze
+  PORT = 12345.freeze
 
-channel_name = ARGV.shift
-unless channel_name
-  abort "Uso: #{$PROGRAM_NAME} nome_do_canal"
-end
+  attr_reader :socket, :channel_name
+  def initialize(channel_name)
+    @channel_name = channel_name
 
-subscription_message = "SUB #{channel_name}"
-socket.send(subscription_message, 0, "127.0.0.1", 12345)
-
-Thread.new do
-  loop do
-    message, * = socket.recvfrom(1024)
-    puts "\n#{message}"
-    print "#{channel_name}> "
+    @socket = UDPSocket.new
+    @socket.bind(HOST, 0)
   end
-end
 
-loop do
-  print "#{channel_name}> "
-  content = gets.chomp
+  def subscribe!
+    socket_send(subscription_message)
+  end
 
-  if content == "LIST"
-    message = "LIST"
-  else
+  def receive_message
+    message, * = socket.recvfrom(1024)
+    message
+  end
+
+  def publish(content)
     message = <<-MSG
 PUB #{channel_name}
 #{content}
 ENDPUB
-  MSG
+    MSG
+
+    socket_send(message)
   end
 
-  socket.send(message, 0, "127.0.0.1", 12345)
+  def request_list
+    socket_send("LIST")
+  end
+
+private
+
+  def subscription_message
+    "SUB #{channel_name}"
+  end
+
+  def socket_send(message)
+    socket.send(message, 0, HOST, PORT)
+  end
 end
