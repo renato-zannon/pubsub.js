@@ -5,6 +5,9 @@ socket = UDPSocket.new
 socket.bind("127.0.0.1", 0)
 
 channel_name = ARGV.shift
+unless channel_name
+  abort "Uso: #{$PROGRAM_NAME} nome_do_canal"
+end
 
 subscription_message = "SUB #{channel_name}"
 socket.send(subscription_message, 0, "127.0.0.1", 12345)

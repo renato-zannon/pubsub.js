@@ -7,6 +7,10 @@ socket.bind("127.0.0.1", 0)
 channel_name = ARGV.shift
 content = ARGV.shift
 
+unless channel_name && content
+  abort "Uso: #{$PROGRAM_NAME} nome_do_canal mensagem"
+end
+
   message = <<-MSG
 PUB #{channel_name}
 #{content}
