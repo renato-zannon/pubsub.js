@@ -1,7 +1,7 @@
-pubsub.js - Um servidor pubsub UDP em Node.js
-=============================================
+[pubsub.js](http://github.com/riccieri/pubsub.js) - Um servidor pubsub UDP em Node.js
+=====================================================================================
 
-Este aplicação foi desenvolvida por Renato Zannon e Ana Carolina Silva para a
+Este aplicação foi desenvolvida por *Renato Zannon* e *Ana Carolina Silva* para a
 disciplina de Laboratório de Redes de Computadores, na Universidade Federal do
 ABC.
 
@@ -32,6 +32,8 @@ Clientes
 Foram desenvolvidos dois clientes de teste, usando a linguagem
 [Ruby](http://www.ruby-lang.org).
 
+### simple.rb ###
+
 O primeiro deles, pensado para testes interativos, é o 'simple', localizado em
 'client/simple.rb'. Para chamá-lo, basta fazer (com o servidor já rodando):
 
@@ -40,6 +42,8 @@ O primeiro deles, pensado para testes interativos, é o 'simple', localizado em
 Isto deve abrir um prompt para o envio de mensagens ao servidor. Caso outro
 cliente esteja em execução no mesmo canal, as mensagens enviadas por um devem
 ser recebidas pelo outro.
+
+### spammer.rb ###
 
 Além do cliente 'simple.rb', há também um cliente não-interativo, o 'spammer',
 que apenas envia continuamente a mesma mensagem para o mesmo canal. O intuito
