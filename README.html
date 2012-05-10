@@ -1,58 +1,63 @@
-<h1><a href="http://github.com/riccieri/pubsub.js">pubsub.js</a> - Um servidor pubsub UDP em Node.js</h1>
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>pubsub.js</title>
+  </head>
+  <body>
+    <h1><a href="http://github.com/riccieri/pubsub.js">pubsub.js</a> - Um servidor pubsub UDP em Node.js</h1>
 
-<p>Este aplicação foi desenvolvida por <em>Renato Zannon</em> e <em>Ana Carolina Silva</em> para a
-disciplina de Laboratório de Redes de Computadores, na Universidade Federal do
-ABC.</p>
+    <p>Este aplicação foi desenvolvida por <em>Renato Zannon</em> e <em>Ana Carolina Silva</em> para a
+    disciplina de Laboratório de Redes de Computadores, na Universidade Federal do
+    ABC.</p>
 
-<p>Trata-se de uma implementação simplificada de um servidor/cliente da
-modalidade publisher/subscriber, usando o protocolo UDP para o transporte das
-mensagens.</p>
+    <p>Trata-se de uma implementação simplificada de um servidor/cliente da
+    modalidade publisher/subscriber, usando o protocolo UDP para o transporte das
+    mensagens.</p>
 
-<h2>Servidor</h2>
+    <h2>Servidor</h2>
 
-<p>Para o desenvolvimento do servidor foi utilizada a plataforma
-<a href="http://nodejs.org">Node.js</a>, conhecida pelo alto nível de concorrência e
-baixo consumo de recursos.</p>
+    <p>Para o desenvolvimento do servidor foi utilizada a plataforma
+    <a href="http://nodejs.org">Node.js</a>, conhecida pelo alto nível de concorrência e
+    baixo consumo de recursos.</p>
 
-<p>O Node.js ainda é considerada uma tecnologia recente, mas sua atual maturidade
-mostrou-se mais do que suficiente para este projeto.</p>
+    <p>O Node.js ainda é considerada uma tecnologia recente, mas sua atual maturidade
+    mostrou-se mais do que suficiente para este projeto.</p>
 
-<p>Para a execução do servidor, usar o comando (é necessário ter o pacote
-&lsquo;nodejs&rsquo; instalado):</p>
+    <p>Para a execução do servidor, usar o comando (é necessário ter o pacote
+    &lsquo;nodejs&rsquo; instalado):</p>
 
-<pre><code>node server/main.js
-</code></pre>
+    <pre><code>node server/main.js</code></pre>
 
-<p>Então, o servidor ficará bloqueado, à espera de conexões.</p>
+    <p>Então, o servidor ficará bloqueado, à espera de conexões.</p>
 
-<h2>Clientes</h2>
+    <h2>Clientes</h2>
 
-<p>Foram desenvolvidos dois clientes de teste, usando a linguagem
-<a href="http://www.ruby-lang.org">Ruby</a>.</p>
+    <p>Foram desenvolvidos dois clientes de teste, usando a linguagem
+    <a href="http://www.ruby-lang.org">Ruby</a>.</p>
 
-<h3>simple.rb</h3>
+    <h3>simple.rb</h3>
 
-<p>O primeiro deles, pensado para testes interativos, é o &lsquo;simple&rsquo;, localizado em
-&lsquo;client/simple.rb&rsquo;. Para chamá-lo, basta fazer (com o servidor já rodando):</p>
+    <p>O primeiro deles, pensado para testes interativos, é o
+    &lsquo;simple&rsquo;, localizado em &lsquo;client/simple.rb&rsquo;. Para
+    chamá-lo, basta fazer (com o servidor já rodando):</p>
 
-<pre><code>ruby client/simple.rb [nome do canal]
-</code></pre>
+    <pre><code>ruby client/simple.rb [nome do canal]</code></pre>
 
-<p>Isto deve abrir um prompt para o envio de mensagens ao servidor. Caso outro
-cliente esteja em execução no mesmo canal, as mensagens enviadas por um devem
-ser recebidas pelo outro.</p>
+    <p>Isto deve abrir um prompt para o envio de mensagens ao servidor. Caso outro cliente esteja em execução no mesmo canal, as mensagens enviadas por um devem ser recebidas pelo outro.</p>
 
-<h3>spammer.rb</h3>
+    <h3>spammer.rb</h3>
 
-<p>Além do cliente &lsquo;simple.rb&rsquo;, há também um cliente não-interativo, o &lsquo;spammer&rsquo;,
-que apenas envia continuamente a mesma mensagem para o mesmo canal. O intuito
-deste cliente é poder testar os níveis de concorrência que o servidor suporta
-enquanto atende a outros clientes (interativos ou não).</p>
+    <p>Além do cliente &lsquo;simple.rb&rsquo;, há também um cliente
+    não-interativo, o &lsquo;spammer&rsquo;, que apenas envia continuamente
+    a mesma mensagem para o mesmo canal. O intuito deste cliente é poder
+    testar os níveis de concorrência que o servidor suporta enquanto atende
+    a outros clientes (interativos ou não).</p>
 
-<p>Para a executar o spammer, basta rodar o comando:</p>
+    <p>Para a executar o spammer, basta rodar o comando:</p>
 
-<pre><code>ruby client/spammer.rb [nome do canal] [mensagem]
-</code></pre>
+    <pre><code>ruby client/spammer.rb [nome do canal] [mensagem]</code></pre>
 
-<p>No arquivo client/client.rb encontra-se a lógica que é compartilhada por ambos
-os clientes.</p>
+    <p>No arquivo client/client.rb encontra-se a lógica que é compartilhada por ambos os clientes.</p>
+  </body>
+</html>
